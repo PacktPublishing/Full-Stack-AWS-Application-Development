@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Investment Calculator</title>
+	<script src="/js/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
+</head>
+<body>
+<h1>Investment Calculator</h1>
+<hr>
+<div>
+	<form id="forms">
+		<table width="300px">
+			<tr>
+				<td>Amount Invested (principal): </td>
+				<td><input type="text" id="principal" size="7"></td>
+			</tr>
+			<tr>
+				<td>Annual Rate (example: 5.56): </td>
+				<td><input type="text" id="annualrate" size="4"></td>
+			</tr>
+			<tr>
+				<td>Number of years: </td>
+				<td><input type="text" id="years" size="2"></td>
+			</tr>
+			<tr>
+				<td>Number of periods: </td>
+				<td><input type="text" id="periods" size="2"></td>
+			</tr>
+			<tr>
+				<td><button type="button" onclick="calculations()">Compute Future Value</button></td>
+				<td><input type="text" id="futurevalue" size="7"></td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="resetForms()" value="Reset"></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+</body>
+</html>

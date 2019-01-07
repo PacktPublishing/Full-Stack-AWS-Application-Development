@@ -1,0 +1,652 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.aws-packt</groupId>
+	<artifactId>Lambda1-API</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+<!-- 	<properties> -->
+<!-- 		<jersey.server.version>2.24</jersey.server.version> -->
+<!-- 		<fasterxml.jackson.version>2.6.6</fasterxml.jackson.version> -->
+<!-- 		<testng.version>6.11</testng.version> -->
+<!-- 		<aws.java.sdk.version>1.11.109</aws.java.sdk.version> -->
+<!-- 		<aws.serverless.java.version>0.6</aws.serverless.java.version> -->
+<!-- 		<aws.lambda.version>1.1.0</aws.lambda.version> -->
+<!-- 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+<!-- 		<jackson.version>2.6.6</jackson.version> -->
+<!-- 		<jacoco.version>0.7.9</jacoco.version> -->
+<!-- 		<surefire.version>2.20</surefire.version> -->
+<!-- 		<log4j2.version>2.8.2</log4j2.version> -->
+<!-- 	</properties> -->
+  <properties>
+    <jrestless.version>0.4.0</jrestless.version>
+    <tap-apiURL>api.microstarlogistics.com/v3-dev</tap-apiURL>
+    <aws.java.sdk.version>1.11.109</aws.java.sdk.version>
+    <fluent.hibernate.version>0.3.1</fluent.hibernate.version>
+    <spring.beans.version>3.0.7.RELEASE</spring.beans.version>
+    <hibernate.version>5.2.5.Final</hibernate.version>
+    <tap-cognitoPoolId>cMJFxRDRs</tap-cognitoPoolId>
+    <testng.version>6.11</testng.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <fasterxml.jackson.version>2.6.6</fasterxml.jackson.version>
+    <dozer.version>5.5.1</dozer.version>
+    <surefireArgLine></surefireArgLine>
+    <slf4j.version>1.7.25</slf4j.version>
+    <aws.serverless.java.version>0.5</aws.serverless.java.version>
+    <log4j2.version>2.8.2</log4j2.version>
+    <aws.lambda.version>1.1.0</aws.lambda.version>
+    <tap-environment>dev</tap-environment>
+    <mysql.connector.version>5.1.40</mysql.connector.version>
+    <jersey.server.version>2.24</jersey.server.version>
+    <tap-regions>us-west-2</tap-regions>
+    <surefire.version>2.20</surefire.version>
+    <jacoco.version>0.7.9</jacoco.version>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>2.8.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.8.2</version>
+      </dependency>
+      <dependency>
+        <groupId>net.sf.dozer</groupId>
+        <artifactId>dozer</artifactId>
+        <version>5.5.1</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>log4j</artifactId>
+            <groupId>log4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jersey2-jaxrs</artifactId>
+        <version>1.5.13</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>log4j</artifactId>
+            <groupId>log4j</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-stepfunctions</artifactId>
+        <version>1.11.109</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws.serverless</groupId>
+        <artifactId>aws-serverless-java-container-jersey</artifactId>
+        <version>0.5</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.2.5.Final</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>log4j</artifactId>
+            <groupId>log4j</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.9.3</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>log4j</artifactId>
+            <groupId>log4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>com.microstar.tap3</groupId>
+        <artifactId>TAP3BaseAPI</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.microstar.tap3</groupId>
+        <artifactId>TAP3Utils</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.microstar.tap3</groupId>
+        <artifactId>TAP3CommonUtils</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.microstar.tap3</groupId>
+        <artifactId>TestingCommon</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate.javax.persistence</groupId>
+        <artifactId>hibernate-jpa-2.0-api</artifactId>
+        <version>1.0.1.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-json-jackson</artifactId>
+        <version>2.25</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.6.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-json-provider</artifactId>
+        <version>2.6.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.6.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.6.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-cbor</artifactId>
+        <version>2.6.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-jaxb-annotations</artifactId>
+        <version>2.6.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jaxrs</groupId>
+        <artifactId>jackson-jaxrs-base</artifactId>
+        <version>2.6.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.reflections</groupId>
+        <artifactId>reflections</artifactId>
+        <version>0.9.11</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>log4j</artifactId>
+            <groupId>log4j</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-dynamodb</artifactId>
+        <version>1.11.124</version>
+        <optional>false</optional>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-core</artifactId>
+        <version>1.11.124</version>
+        <optional>false</optional>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-models</artifactId>
+        <version>1.11.124</version>
+        <optional>false</optional>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.7.9</version>
+      <type>maven-plugin</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.2.5.Final</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>slf4j-log4j12</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.40</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microstar.tap3</groupId>
+      <artifactId>TAP3BaseAPI</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microstar.tap3</groupId>
+      <artifactId>TAP3ShipmentDO</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microstar.tap3</groupId>
+      <artifactId>TAP3Utils</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microstar.tap3</groupId>
+      <artifactId>TAP3ShipmentAPIDO</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microstar.tap3</groupId>
+      <artifactId>TAP3CommonUtils</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microstar.tap3</groupId>
+      <artifactId>TAP3InventoryReportsAPIDO</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-sns</artifactId>
+      <version>1.11.109</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-configuration2</artifactId>
+      <version>2.1.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microstar.tap3</groupId>
+      <artifactId>TestingCommon</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-xray-recorder-sdk-core</artifactId>
+      <version>1.1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.8.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.8.2</version>
+      <scope>compile</scope>
+    </dependency>
+		<dependency>
+			<groupId>com.aws-packt</groupId>
+			<artifactId>Lambda1-APIDO</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+  </dependencies>
+
+<!-- 	<dependencies> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.logging.log4j</groupId> -->
+<!-- 			<artifactId>log4j-slf4j-impl</artifactId> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.logging.log4j</groupId> -->
+<!-- 			<artifactId>log4j-core</artifactId> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.aws-packt</groupId> -->
+<!-- 			<artifactId>Lambda1-APIDO</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.amazonaws.serverless</groupId> -->
+<!-- 			<artifactId>aws-serverless-java-container-core</artifactId> -->
+<!-- 			<version>${aws.serverless.java.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.amazonaws.serverless</groupId> -->
+<!-- 			<artifactId>aws-serverless-java-container-jersey</artifactId> -->
+<!-- 			<version>${aws.serverless.java.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.glassfish.jersey.media</groupId> -->
+<!-- 			<artifactId>jersey-media-json-jackson</artifactId> -->
+<!-- 			<version>${jersey.server.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.amazonaws</groupId> -->
+<!-- 			<artifactId>aws-java-sdk-dynamodb</artifactId> -->
+<!-- 			<version>${aws.java.sdk.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.amazonaws</groupId> -->
+<!-- 			<artifactId>aws-java-sdk-ssm</artifactId> -->
+<!-- 			<version>${aws.java.sdk.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.amazonaws</groupId> -->
+<!-- 			<artifactId>aws-java-sdk-lambda</artifactId> -->
+<!-- 			<version>${aws.java.sdk.version}</version> -->
+<!-- 		</dependency> -->
+ 		<!-- These cannot be deleted even though the project will compile without  
+ 			them. The API will not return any data without these dependencies. --> 
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.jaxrs</groupId> -->
+<!-- 			<artifactId>jackson-jaxrs-json-provider</artifactId> -->
+<!-- 			<version>${jackson.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
+<!-- 			<artifactId>jackson-annotations</artifactId> -->
+<!-- 			<version>${jackson.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
+<!-- 			<artifactId>jackson-core</artifactId> -->
+<!-- 			<version>${jackson.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
+<!-- 			<artifactId>jackson-databind</artifactId> -->
+<!-- 			<version>${jackson.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.dataformat</groupId> -->
+<!-- 			<artifactId>jackson-dataformat-cbor</artifactId> -->
+<!-- 			<version>${jackson.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 	  	<dependency> -->
+<!-- 		  	<groupId>org.testng</groupId> -->
+<!-- 		  	<artifactId>testng</artifactId> -->
+<!-- 		  	<version>${testng.version}</version> -->
+<!-- 	  	</dependency> -->
+<!-- 	</dependencies> -->
+
+<!-- 	<dependencyManagement> -->
+<!-- 		<dependencies> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.apache.logging.log4j</groupId> -->
+<!-- 				<artifactId>log4j-slf4j-impl</artifactId> -->
+<!-- 				<version>${log4j2.version}</version> -->
+<!-- 			</dependency> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.apache.logging.log4j</groupId> -->
+<!-- 				<artifactId>log4j-core</artifactId> -->
+<!-- 				<version>${log4j2.version}</version> -->
+<!-- 			</dependency> -->
+<!-- 		</dependencies> -->
+<!-- 	</dependencyManagement> -->
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.sebastian-daschner</groupId>
+				<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+				<version>0.14</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>analyze-jaxrs</goal>
+						</goals>
+						<configuration>
+							<!-- Available backends are plaintext (default), swagger and asciidoc -->
+							<backend>swagger</backend>
+							<!-- Domain of the deployed project, defaults to example.com -->
+							<deployedDomain>api.aws-packt-videos.com</deployedDomain>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<!-- Sets the VM argument line used when unit tests are run. -->
+					<argLine>${surefireArgLine}</argLine>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<!-- Prepares the property pointing to the JaCoCo runtime agent which 
+						is passed as VM argument when Maven the Surefire plugin is executed. -->
+					<execution>
+						<id>pre-unit-test</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+							<destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+							<!-- Sets the name of the property containing the settings for JaCoCo 
+								runtime agent. -->
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
+					</execution>
+					<!-- Ensures that the code coverage report for unit tests is created 
+						after unit tests have been run. -->
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.mcdaniel</groupId>
+				<artifactId>serverless-maven-plugin</artifactId>
+				<version>1.0.1-SNAPSHOT</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.amazonaws</groupId>
+						<artifactId>aws-java-sdk</artifactId>
+						<version>${aws.java.sdk.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<environment>dev</environment>
+					<regions>us-west-2</regions>
+					<!-- <unauthenticatedRole>the_role_to_use_when_unauthenticated_call_allowed</unauthenticatedRole> -->
+					<description>Packt Lambda1 API.</description>
+					<customDomainName>api.packt.com</customDomainName>
+					<handlerMethod>com.packt.videos.lambda1.api.Lambda1FunctionHandler::handleRequest</handlerMethod>
+					<serviceName>Lambda1-API</serviceName>
+					<uploadJarBucket>uploads</uploadJarBucket>
+					<apiEvent>
+						<apiTitle>Packt API Project</apiTitle>
+					</apiEvent>
+					<permissions>
+						<permission>
+							<effect>Allow</effect>
+							<resources>
+								<resource>arn:aws:ssm:$region$:$accountId$:*</resource>
+							</resources>
+							<actions>
+								<action>ssm:DescribeParameters</action>
+								<action>ssm:GetParameters</action>
+							</actions>
+						</permission>
+						<permission>
+							<effect>Allow</effect>
+							<resources>
+								<resource>arn:aws:logs:$region$:$accountId$:*</resource>
+							</resources>
+							<actions>
+								<action>logs:CreateLogGroup</action>
+							</actions>
+						</permission>
+						<permission>
+							<effect>Allow</effect>
+							<resources>
+								<resource>*</resource>
+							</resources>
+							<actions>
+								<action>xray:PutTraceSegments</action> 
+                				<action>xray:PutTelemetryRecords</action>
+							</actions>
+						</permission>
+						<permission>
+							<effect>Allow</effect>
+							<resources>
+								<resource>arn:aws:logs:$region$:$accountId$:log-group:/aws/lambda/Lambda1-API:*</resource>
+							</resources>
+							<actions>
+								<action>logs:CreateLogStream</action>
+								<action>logs:PutLogEvents</action>
+								<action>logs:DescribeLogStreams</action>
+							</actions>
+						</permission>
+						<permission>
+							<effect>Allow</effect>
+							<resources>
+								<resource>arn:aws:dynamodb:$regions$:$accountId$:table/receiptInfo</resource>
+							</resources>
+							<actions>
+								<action>dynamodb:GetItem</action>
+								<action>dynamodb:PutItem</action>
+							</actions>
+						</permission>
+					</permissions>
+					<memorySize>512</memorySize>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<!-- http://stackoverflow.com/questions/29107376/jersey-problems-with-maven-shade-plugin -->
+					<transformers>
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+					</transformers>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

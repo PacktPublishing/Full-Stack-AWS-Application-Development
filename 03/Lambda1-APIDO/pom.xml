@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.aws-packt</groupId>
+	<artifactId>Lambda1-APIDO</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<jersey.server.version>2.24</jersey.server.version>
+		<fasterxml.jackson.version>2.6.6</fasterxml.jackson.version>
+		<testng.version>6.11</testng.version>
+		<aws.java.sdk.version>1.11.109</aws.java.sdk.version>
+		<aws.serverless.java.version>0.6</aws.serverless.java.version>
+		<aws.lambda.version>1.1.0</aws.lambda.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jackson.version>2.6.6</jackson.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.amazonaws.serverless</groupId>
+			<artifactId>aws-serverless-java-container-core</artifactId>
+			<version>${aws.serverless.java.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws.serverless</groupId>
+			<artifactId>aws-serverless-java-container-jersey</artifactId>
+			<version>${aws.serverless.java.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>${jersey.server.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>${aws.java.sdk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-lambda</artifactId>
+			<version>${aws.java.sdk.version}</version>
+		</dependency>
+		<!-- These cannot be deleted even though the project will compile without 
+			them. The API will not return any data without these dependencies. -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-cbor</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+	  	<dependency>
+		  	<groupId>org.testng</groupId>
+		  	<artifactId>testng</artifactId>
+		  	<version>${testng.version}</version>
+	  	</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp" packages="">
+    <Appenders>
+            <Console name="STDOUT" target="SYSTEM_OUT">
+                <PatternLayout pattern="%d %5p [%t] (%C:%L) - %m%n"/>
+            </Console>
+    </Appenders>
+    <Loggers>
+        <!-- If package is not below, then it uses the default root level. -->
+        <Root level="debug">
+            <AppenderRef ref = "STDOUT"/>
+        </Root>
+        <Logger name="com.amazonaws.serverless" level="DEBUG" additivity="false">
+        	<Appender-ref ref="STDOUT" level="DEBUG" />
+        </Logger>
+        <Logger name="org.dozer" level="INFO"
+                additivity="false">
+            <Appender-ref ref="STDOUT" level="INFO" />
+        </Logger>
+        <Logger name="org.hibernate" level="INFO"
+                additivity="false">
+            <Appender-ref ref="STDOUT" level="INFO" />
+        </Logger>
+        <Logger name="org.apache.commons.beanutils" level="INFO"
+                additivity="false">
+            <Appender-ref ref="STDOUT" level="INFO" />
+        </Logger>
+<!--        <Logger name="org.reflections" level="ERROR"
+                additivity="false">
+            <Appender-ref ref="STDOUT" level="ERROR" />
+        </Logger>-->
+    </Loggers>
+</Configuration>
