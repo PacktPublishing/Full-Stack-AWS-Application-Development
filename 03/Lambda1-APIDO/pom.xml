@@ -13,7 +13,7 @@
 		<aws.serverless.java.version>0.6</aws.serverless.java.version>
 		<aws.lambda.version>1.1.0</aws.lambda.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jackson.version>2.6.6</jackson.version>
+		<jackson.version>2.12.6.1</jackson.version>
 	</properties>
 
 	<dependencies>
